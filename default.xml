@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <!-- aosp have given up on gcc, but we still need it for u-boot until it catches up. We use the latest revison before the toolchains were removed  -->
+  <project path="prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" name="platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" revision="0a0604336d4d1067aa1aaef8d3779b31fcee841d" groups="linux" clone-depth="1"/>
+  <project path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9" name="platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9" revision="4d16d93f49c2b5ecdd0f12c38d194835dd595603" groups="linux" clone-depth="1"/>
+  <project path="prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9" name="platform/prebuilts/gcc/linux-x86/x86/x86_64-linux-android-4.9" revision="91761804f6e3bfceaa2894681b6fe86d79fb3b4c" groups="linux" clone-depth="1"/>
+
+  <remote name="amaksoft" fetch="https://github.com/amaksoft"/>
+  <!-- AOSP has an external/u-boot, but it was forked ages ago. We will use fork based on latest stable version -->
+  <project path="external/u-boot" name="external_u-boot" revision="android" remote="amaksoft"/>
+
+  <!-- AOSP has an external/dosfstools, but it is abandoned. However we need it to build FAT images -->
+  <project path="external/dosfstools" name="external_dosfstools" revision="android" remote="amaksoft"/>
+
+  <!-- Important tools like sfdisk and fallocate for creating custom disk images -->
+  <project path="external/util-linux" name="external_util-linux" revision="android" remote="amaksoft"/>
+
+  <!-- It's surprisingly complicated to build the envsubst from gettext git repo. Let's use it as a prebuilt for now -->
+  <project path="prebuilts/gettext" name="prebuilts_gettext" revision="main" remote="amaksoft" clone-depth="1"/>
+
+  <!-- Our device definitions -->
+  <project path="device/raspberrypi/mrpi4" name="device_raspberrypi_mrpi4" revision="main" remote="amaksoft"/>
+
+  <remote name="raspberrypi" fetch="https://github.com/raspberrypi"/>
+  <!-- Raspberry Pi's firmware files repoository -->
+  <project path="device/raspberrypi/common/firmware" name="firmware" revision="stable" remote="raspberrypi" clone-depth="1"/>
+</manifest>
